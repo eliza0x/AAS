@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=EUC-JP" />
+<meta http-equiv="content-language" content="ja" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+<meta name="robots" content="index,follow" />
+<meta name="keywords" content="perl" />
+<meta name="description" content="The Sorting Hat" />
+<meta name="rating" content="general" />
+<meta name="author" content="TSH" />
+<meta name="copyright" content="Copyright &copy; 2005" />
+<meta name="generator" content="TSH  $Id: main6.pl,v 1.16 2019/04/23 08:48:12 yasutome Exp yasutome $ " />
+<title>The Sorting Hat</title>
+<link rel="stylesheet" type="text/css" media="screen" href="themes/style.css" />
+
+<script language="JavaScript" type="text/javascript">
+<!-- //hide
+function openpopup(url,name,options,fullscreen) {
+  fullurl = "https://l508-08.is.oit.ac.jp/tsh" + url;
+  windowobj = window.open(fullurl,name,options);
+  windowobj.focus();
+  return false;
+}
+history.forward()
+// done hiding -->
+</script>
+<!-- for Shadowbox -->
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/shadowbox/adapter/shadowbox-jquery.js"></script>
+<script type="text/javascript" src="js/shadowbox/shadowbox.js"></script>
+<script type="text/javascript"><!--
+	Shadowbox.loadSkin('classic', 'js/shadowbox/skin/');
+	Shadowbox.loadLanguage('en', 'js/shadowbox/lang/');
+	Shadowbox.loadPlayer(['iframe'], 'js/shadowbox/player/');
+	$(document).ready(function(){
+		var option = {}; Shadowbox.init(option);
+	});
+// --></script>
+<!-- for Autogrow -->
+<script type="text/javascript" src="js/jquery.autogrow-1.2.2.js"></script>
+<script type="text/javascript"><!--
+	$(document).ready(function() {
+		$('textarea.expanding').autogrow();
+	});
+// --></script>
+<!-- for Autogrow -->
+<!-- for Datepicker + Tabs -->
+<script type="text/javascript" src="js/jquery-ui-1.7.custom.min.js"></script>
+<script type="text/javascript" src="js/ui.datepicker-ja.js"></script>
+<script type="text/javascript"><!--
+	$(document).ready(function() {
+		$('#startdate').datepicker();
+		$('#tabs').tabs();
+		
+	});
+// --></script>
+<link rel="stylesheet" type="text/css" media="screen" href="js/jquery-ui-1.7.custom.css" />
+<!-- for Datepicker + Tabs -->
+
+</head>
+<body>
+<!-- header -->
+<table cellspacing="0">
+  <tr id="header">
+    <td id="headerlogo"><a href="./"><img src="themes/logo.gif" width="370" height="80" alt="The Sorting Hat" /></a></td>
+    <td id="headerbanner">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="headerbar" colspan="2">&nbsp;</td>
+  </tr>
+</table>
+<!-- End of header -->
+<table cellspacing="0">
+  <tr>
+<!-- left menu -->
+    <td id="leftcolumn" style="vertical-align: top">
+      <div class="blockTitle">連絡事項(共通)</div>
+      <div class="blockContent">
+      <b>はじめに</b><br /> まず、演習室のアカウントとパスワードにて<font color=red>ログインしてください</font>。<br /> 教員の方は、<font color=red>'t'で始まるアカウント</font>をご利用下さい。<br />  <b>他学科の登録について</b><br /> 他学科の研究室に登録する際には、原則として定員を超えた場合、<font color=red>2人以内（定員6人の研究室は1人以内）まで</font>受け入れが認められてることを考慮に入れて登録して下さい。ただし、共通教育の研究室、定員を超えていない場合は適用しません。<br/>  <b>スケジュール</b><br />        <font color=red>第1次登録期間</font>です。<br />                    
+      </div>
+      <div class="blockTitle">ログイン</div>
+      <div class="blockContent">
+      <form style="margin-top: 0px;" action="https://l508-08.is.oit.ac.jp/tsh/" method="post">
+      ユーザ名<br />
+      <input type="text" name="uid" size="12" value="" maxlength="25" /><br />
+      パスワード<br />
+      <input type="password" name="pass" size="12" maxlength="32" /><br />
+      <input type="hidden" name="act" value="login" />
+      <input type="submit" value="ログイン" /><br />
+      
+      </form>
+      </div>
+      <div class="blockTitle">メニュー</div>
+      <div class="blockContent">
+      <table cellspacing="0">
+        <tr>
+          <td id="mainmenu">
+            <a class="menuTop" href="./?act=home">ホーム</a>
+            <a class="menuMain" href="./?act=showoh&amp;update=no&amp;tabs=" >説明会情報を参照</a>
+            <a class="menuMain" href="./?act=schedule">スケジュール確認</a>
+            <a class="menuMain" href="./?act=contact">問い合わせ</a>
+          </td>
+        </tr>
+      </table>
+      </div>
+    </td>
+<!-- end of left menu -->
+<!-- content part act=home -->
+    <td id="centercolumn" style="vertical-align: top">
+    <div id="content">
+    <table border='0' cellspacing='0' cellpadding='0' width='570'>
+    <tr>
+      <td width='570' class='calframe'>
+<!-- 教員のリスト   -->
+<!-- 登録  -->
+<table class="outer" cellspacing='1' width='100%'>
+  <tr><th>教員名</th><th>研究室名</th><th align="center">定員</th><th align="center">登録者数<br />(C,S,M,N)</th></tr>
+  <tr><td class="head" colspan="4">コンピュータ科学科</td></tr>
+  <tr class="odd"><td>尾崎　敦夫</td><td>知能応用システム</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>9</b></font>(9,0,0,0)</td></tr>
+  <tr class="even"><td>中西　通雄</td><td>情報メディア工学・教育工学</td><td style="text-align:center;">7</td><td style="text-align:center;">1(0,0,0,1)</td></tr>
+  <tr class="odd"><td>牧野　博之</td><td>ナノ集積システム</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>9</b></font>(9,0,0,0)</td></tr>
+  <tr class="even"><td>荒木　英夫</td><td>組込みシステム</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='green'><b>8</b></font>(7,1,0,0)</td></tr>
+  <tr class="odd"><td>小松　信雄</td><td>ビークル制御</td><td style="text-align:center;">7</td><td style="text-align:center;">0</td></tr>
+  <tr class="even"><td>中西　知嘉子</td><td>システムアーキテクチャ</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>11</b></font>(11,0,0,0)</td></tr>
+  <tr class="odd"><td>布村　泰浩</td><td>プロセッサソフトウェア</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>11</b></font>(11,0,0,0)</td></tr>
+  <tr class="even"><td>奥野　弘嗣</td><td>神経模倣システム</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>9</b></font>(9,0,0,0)</td></tr>
+  <tr class="odd"><td>小谷　直樹</td><td>学習・先進知能システム</td><td style="text-align:center;">7</td><td style="text-align:center;"><font color='red'><b>8</b></font>(8,0,0,0)</td></tr>
+  <tr class="even"><td>小西　将人</td><td>プロセッサアーキテクチャ</td><td style="text-align:center;">8</td><td style="text-align:center;">0</td></tr>
+  <tr class="odd"><td>神納　貴生</td><td>画像処理</td><td style="text-align:center;">8</td><td style="text-align:center;">4(3,1,0,0)</td></tr>
+  <tr class="even"><td>鎌倉　良成</td><td>数理応用システム</td><td style="text-align:center;">7</td><td style="text-align:center;"><font color='red'><b>12</b></font>(12,0,0,0)</td></tr>
+  <tr><td class="head" colspan="4">情報システム学科</td></tr>
+  <tr class="odd"><td>椎原　正次</td><td>経営システム</td><td style="text-align:center;">9</td><td style="text-align:center;">1(0,1,0,0)</td></tr>
+  <tr class="even"><td>真貝　寿明</td><td>宇宙物理・数理科学</td><td style="text-align:center;">8</td><td style="text-align:center;">4(0,4,0,0)</td></tr>
+  <tr class="odd"><td>須永　宏</td><td>サービスコンピューティング</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='red'><b>13</b></font>(0,10,0,3)</td></tr>
+  <tr class="even"><td>深海　悟</td><td>Database & Software Engineering</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='green'><b>9</b></font>(1,7,1,0)</td></tr>
+  <tr class="odd"><td>井垣　宏</td><td>Team Software Development</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='green'><b>9</b></font>(0,9,0,0)</td></tr>
+  <tr class="even"><td>鎌倉　快之</td><td>Scientific Visualization</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='red'><b>14</b></font>(0,13,1,0)</td></tr>
+  <tr class="odd"><td>斉藤　隆</td><td>数理情報</td><td style="text-align:center;">8</td><td style="text-align:center;">0</td></tr>
+  <tr class="even"><td>水谷　泰治</td><td>並列処理</td><td style="text-align:center;">8</td><td style="text-align:center;">3(0,3,0,0)</td></tr>
+  <tr class="odd"><td>山田　隆亮</td><td>社会基盤</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>11</b></font>(1,10,0,0)</td></tr>
+  <tr class="even"><td>尾花　将輝</td><td>ソフトウェア開発・設計学</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>11</b></font>(0,11,0,0)</td></tr>
+  <tr class="odd"><td>本田　澄</td><td>ソフトウェア信頼性</td><td style="text-align:center;">8</td><td style="text-align:center;"><font color='red'><b>9</b></font>(0,9,0,0)</td></tr>
+  <tr><td class="head" colspan="4">情報メディア学科</td></tr>
+  <tr class="odd"><td>神田　智子</td><td>ヒューマンインタフェース</td><td style="text-align:center;">10</td><td style="text-align:center;"><font color='green'><b>10</b></font>(0,2,8,0)</td></tr>
+  <tr class="even"><td>小堀　研一</td><td>図形情報</td><td style="text-align:center;">6</td><td style="text-align:center;"><font color='red'><b>9</b></font>(1,0,8,0)</td></tr>
+  <tr class="odd"><td>佐野　睦夫</td><td>インタラクションデザイン</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='red'><b>11</b></font>(0,0,11,0)</td></tr>
+  <tr class="even"><td>鈴木　基之</td><td>音声・音楽情報処理</td><td style="text-align:center;">9</td><td style="text-align:center;">7(2,0,5,0)</td></tr>
+  <tr class="odd"><td>平山　亮</td><td>マルチメディア応用</td><td style="text-align:center;">9</td><td style="text-align:center;">5(0,2,3,0)</td></tr>
+  <tr class="even"><td>平　博順</td><td>自然言語処理</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='green'><b>9</b></font>(0,2,6,1)</td></tr>
+  <tr class="odd"><td>西尾　孝治</td><td>三次元画像処理</td><td style="text-align:center;">10</td><td style="text-align:center;"><font color='red'><b>11</b></font>(1,0,10,0)</td></tr>
+  <tr class="even"><td>橋本　渉</td><td>感覚メディア</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='red'><b>10</b></font>(0,0,10,0)</td></tr>
+  <tr class="odd"><td>宮脇　健三郎</td><td>センサ情報処理</td><td style="text-align:center;">9</td><td style="text-align:center;">0</td></tr>
+  <tr class="even"><td>福島　拓</td><td>コミュニケーションデザイン</td><td style="text-align:center;">10</td><td style="text-align:center;"><font color='red'><b>12</b></font>(0,1,11,0)</td></tr>
+  <tr class="odd"><td>村木 祐太</td><td>Visual Computing</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='red'><b>14</b></font>(0,0,14,0)</td></tr>
+  <tr><td class="head" colspan="4">情報ネットワーク学科</td></tr>
+  <tr class="odd"><td>大島　一能</td><td>情報通信ネットワーク</td><td style="text-align:center;">10</td><td style="text-align:center;"><font color='red'><b>11</b></font>(1,0,0,10)</td></tr>
+  <tr class="even"><td>酒澤　茂之</td><td>インテリジェントメディア通信</td><td style="text-align:center;">10</td><td style="text-align:center;"><font color='red'><b>11</b></font>(0,0,0,11)</td></tr>
+  <tr class="odd"><td>塚本　勝俊</td><td>光電波ネットワーク</td><td style="text-align:center;">10</td><td style="text-align:center;">8(0,0,0,8)</td></tr>
+  <tr class="even"><td>福澤　寧子</td><td>情報セキュリティ</td><td style="text-align:center;">10</td><td style="text-align:center;"><font color='green'><b>10</b></font>(0,1,0,9)</td></tr>
+  <tr class="odd"><td>安留　誠吾</td><td>高度ソフトウェア</td><td style="text-align:center;">10</td><td style="text-align:center;"><font color='red'><b>12</b></font>(0,0,0,12)</td></tr>
+  <tr class="even"><td>山内　雪路</td><td>通信方式</td><td style="text-align:center;">6</td><td style="text-align:center;">4(0,0,0,4)</td></tr>
+  <tr class="odd"><td>島野　顕継</td><td>ネットワーキング</td><td style="text-align:center;">10</td><td style="text-align:center;">4(0,0,0,4)</td></tr>
+  <tr class="even"><td>西口　敏司</td><td>画像情報処理</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='green'><b>9</b></font>(0,0,2,7)</td></tr>
+  <tr class="odd"><td>平嶋　洋一</td><td>学習モデリング</td><td style="text-align:center;">9</td><td style="text-align:center;">1(0,0,0,1)</td></tr>
+  <tr class="even"><td>杉川　智</td><td>システム情報学</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='green'><b>9</b></font>(0,0,1,8)</td></tr>
+  <tr class="odd"><td>山本　雄平</td><td>インテリジェント情報通信システム</td><td style="text-align:center;">9</td><td style="text-align:center;"><font color='red'><b>11</b></font>(0,0,0,11)</td></tr>
+  <tr><td class="head" colspan="4">共通教育</td></tr>
+  <tr class="odd"><td>藤井　研一</td><td>計測およびシミュレーション物理</td><td style="text-align:center;">5</td><td style="text-align:center;">4(1,2,0,1)</td></tr>
+  <tr class="even"><td>井上　裕美子</td><td>運動生理学</td><td style="text-align:center;">5</td><td style="text-align:center;"><font color='red'><b>7</b></font>(0,1,4,2)</td></tr>
+  <tr class="odd"><td>矢野　浩二朗</td><td>デジタル教材・生命情報</td><td style="text-align:center;">5</td><td style="text-align:center;"><font color='green'><b>5</b></font>(0,3,0,2)</td></tr>
+  <tr><th colspan="2" align="right">合計</th><th align="center">401</th><th align="center">370(87,93,95,95)</th></tr>
+</table><br />
+<!-- End of 教員のリスト -->
+      </td>
+    </tr>
+    </table>
+    </div>
+    </td>
+<!-- content part -->
+  </tr>
+</table>
+<!-- footer -->
+<table cellspacing="0">
+  <tr id="footerbar">
+    <td><a href="http://asl.is.oit.ac.jp/" target="_blank">Powered by Advanced Software Laboratory &copy; 2005-<script type="text/javascript">document.write(new Date().getFullYear());</script></a></td>
+  </tr>
+</table>
+<!-- End of footer -->
+</body>
+</html>
